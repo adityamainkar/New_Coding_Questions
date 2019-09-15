@@ -1,0 +1,38 @@
+Find min powers of 2 to reach number.
+
+
+def minPowersOfTwo(n):
+    p = (1 << n.bit_length())
+    comple = (1 << n.bit_length()) - n
+    #print(comple)
+    pos = neg = 0
+    while n:
+        print("n = {}, comple = {}, pos = {}, neg = {}".format(n,comple,pos,neg))
+        n, bit = divmod(n, 2)
+        comple, comple_bit = divmod(comple, 2)
+        pos += bit
+        neg += comple_bit
+        pos, neg = min(pos, 1 + neg), min(neg, 1 + pos)
+
+    return pos
+assert minPowersOfTwo(78) == 3
+#assert minPowersOfTwo(15) == 2
+assert minPowersOfTwo(8) == 1
+#assert minPowersOfTwo(1) == 1
+#assert minPowersOfTwo(71) == 3
+#assert minPowersOfTwo(0) == 0
+#assert minPowersOfTwo(29) == 3
+
+
+
+n = 78, comple = 50, pos = 0, neg = 0
+n = 39, comple = 25, pos = 0, neg = 0
+n = 19, comple = 12, pos = 1, neg = 1
+n = 9, comple = 6, pos = 2, neg = 1
+n = 4, comple = 3, pos = 2, neg = 1
+n = 2, comple = 1, pos = 2, neg = 2
+n = 1, comple = 0, pos = 2, neg = 3
+n = 8, comple = 8, pos = 0, neg = 0
+n = 4, comple = 4, pos = 0, neg = 0
+n = 2, comple = 2, pos = 0, neg = 0
+n = 1, comple = 1, pos = 0, neg = 0
