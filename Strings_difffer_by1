@@ -1,0 +1,36 @@
+AirBnB
+
+Given a list of n strings. Each string has length k. Return true if there're 2 strings that only differ by 1 character, otherwise false. You can assume that all strings contain only lowercase English letters [a-z].
+
+Example 1:
+
+Input: ["abc", "xyz", "abd"]
+Output: true
+Explanation: "abc" and "abd" only differ by 1 character.
+
+Complexity: O(K^2*N)
+
+def getNextWord(s):
+    res = []
+    for i in range(len(s)):
+        for j in range(26):
+            next_char = chr(j + ord('a'))
+            if next_char == s[i]:
+                continue
+            res.append(s[:i] + next_char + s[i + 1 :])
+            print(res)
+    return res
+
+def findStr(A):
+    my_set = set(A)
+    print(my_set)
+    for s in A:
+        for candidate in getNextWord(s):
+            if candidate in my_set:
+                return True
+    return False
+
+
+print(findStr(["ccc", "dcc"])) -> True
+#print(findStr(["abc", "def", "xyz"])) -> Flase
+#print(findStr(["abcd", "bbbb", "abxd", "cccc"]))-> True
